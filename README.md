@@ -1,8 +1,6 @@
-# FPGA project template
+# Template for my [Go Board](https://www.nandland.com/goboard/introduction.html) projects
 
-This is a GitHub [template repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template) for my FPGA projects.
-
-To build your project and send bitstream to the FPGA board just type:
+To build the project and send bitstream to the FPGA board just type:
 
 ```sh
 make && make install
