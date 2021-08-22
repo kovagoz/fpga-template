@@ -1,0 +1,6 @@
+bin/
+test/*.vcd
+test/*.vvp
+constraints.pcf
+.hdl_checker/
+*.swp
