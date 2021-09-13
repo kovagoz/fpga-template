@@ -27,16 +27,16 @@ endif
 # --  BUILDING ------------------
 
 .PHONY: build
-build: bin/$(MODULE).bin
+build: bin/Main.bin
 
-bin/$(MODULE).bin: bin/$(MODULE).asc
+bin/Main.bin: bin/Main.asc
 	$(icepack_cmd) $< $@
 
-bin/$(MODULE).asc: bin/$(MODULE).json constraints.pcf
+bin/Main.asc: bin/Main.json constraints.pcf
 	$(nextpnr_cmd) --hx1k --package vq100 --json $< --pcf $(word 2,$^) --asc $@
 
-bin/$(MODULE).json: src/$(MODULE).v bin
-	$(yosys_cmd) -p 'synth_ice40 -top $(MODULE) -json $@' $<
+bin/Main.json: src/*.v | bin
+	$(yosys_cmd) -p 'synth_ice40 -top Main -json $@' src/Main.v
 
 bin:
 	mkdir $@
@@ -51,7 +51,7 @@ clean:
 # -- PROGRAMMING ----------------
 
 .PHONY: install
-install: bin/$(MODULE).bin # Send bitstream to the Go Board
+install: bin/Main.bin # Send bitstream to the Go Board
 	$(iceprog_cmd) $<
 
 # -- TESTING --------------------
